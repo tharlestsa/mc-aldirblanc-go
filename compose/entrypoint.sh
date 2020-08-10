@@ -34,6 +34,10 @@ if [ ! -f /.deployed ]; then
 #    touch /.deployed
 fi
 
+mkdir /var/www/html/assets
+mkdir /var/www/html/files
+mkdir /var/www/private-files
+
 chown -R www-data:www-data /var/www/html/assets /var/www/html/files /var/www/private-files
 
 nohup /recreate-pending-pcache-cron.sh &
