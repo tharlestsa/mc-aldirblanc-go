@@ -20,10 +20,12 @@ while(true){
     sleep(1);
 }
 '
+rm -rfv /var/www/html/protected/application/plugins/AldirBlanc
+rm -rfv /var/www/html/protected/application/plugins/MultipleLocalAuth
+rm -rfv /var/www/html/protected/application/plugins/MultipleLocalAuth/Facebook/FacebookStrategy.php
 
 git clone https://github.com/mapasculturais/plugin-AldirBlanc /var/www/html/protected/application/plugins/AldirBlanc
 git clone https://github.com/mapasculturais/plugin-MultipleLocalAuth /var/www/html/protected/application/plugins/MultipleLocalAuth
-
 curl https://raw.githubusercontent.com/opauth/facebook/master/FacebookStrategy.php > /var/www/html/protected/application/plugins/MultipleLocalAuth/Facebook/FacebookStrategy.php
 
 if [ ! -f /.deployed ]; then
