@@ -21,6 +21,11 @@ while(true){
 }
 '
 
+git clone https://github.com/mapasculturais/plugin-AldirBlanc /var/www/html/protected/application/plugins/AldirBlanc
+git clone https://github.com/mapasculturais/plugin-MultipleLocalAuth /var/www/html/protected/application/plugins/MultipleLocalAuth
+
+curl https://raw.githubusercontent.com/opauth/facebook/master/FacebookStrategy.php > /var/www/html/protected/application/plugins/MultipleLocalAuth/Facebook/FacebookStrategy.php
+
 if [ ! -f /.deployed ]; then
     cd /var/www/scripts
     ./deploy.sh
