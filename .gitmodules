@@ -1,6 +1,0 @@
-[submodule "src/protected/application/plugins/AldirBlanc"]
-	path = src/protected/application/plugins/AldirBlanc
-	url = https://github.com/mapasculturais/plugin-AldirBlanc.git
-[submodule "src/protected/application/plugins/MultipleLocalAuth"]
-	path = src/protected/application/plugins/MultipleLocalAuth
-	url = https://github.com/mapasculturais/plugin-MultipleLocalAuth.git
