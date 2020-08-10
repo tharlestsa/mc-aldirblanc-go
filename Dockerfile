@@ -67,6 +67,9 @@ RUN ln -s /var/www/html /var/www/src
 
 COPY version.txt /var/www/version.txt
 
+RUN chgrp -R 0 /var/www/ && \
+    chmod -R g=u /var/www/
+
 COPY compose/recreate-pending-pcache-cron.sh /recreate-pending-pcache-cron.sh
 COPY compose/entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
