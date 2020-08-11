@@ -42,6 +42,8 @@ RUN pecl install -o -f redis \
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer.phar
 
+RUN chcon -R -t svirt_sandbox_file_t /var/www
+
 # Copy source
 COPY src/index.php /var/www/html/index.php
 COPY src/protected /var/www/html/protected
@@ -58,8 +60,9 @@ WORKDIR /var/www/html/protected/application/themes/
 
 RUN find . -maxdepth 1 -mindepth 1 -exec echo "compilando sass do tema " {} \; -exec sass {}/assets/css/sass/main.scss {}/assets/css/main.css -E "UTF-8" \;
 
-RUN chown -R www-data:www-data /var/www /var/www/html/assets /var/www/html/files /var/www/private-files
-RUN chmod -R 775 /var/www /var/www/html/assets /var/www/html/files /var/www/private-files
+RUN mkdir /var/www/html/assets
+RUN mkdir /var/www/html/files
+RUN mkdir /var/www/private-files
 
 COPY scripts /var/www/scripts
 COPY compose/production/php.ini /usr/local/etc/php/php.ini
@@ -69,9 +72,6 @@ COPY compose/config.d /var/www/html/protected/application/conf/config.d
 RUN ln -s /var/www/html /var/www/src
 
 COPY version.txt /var/www/version.txt
-
-RUN chgrp -R 0 /var/www/ && \
-    chmod -R g=u /var/www/
 
 COPY compose/recreate-pending-pcache-cron.sh /recreate-pending-pcache-cron.sh
 COPY compose/entrypoint.sh /entrypoint.sh
