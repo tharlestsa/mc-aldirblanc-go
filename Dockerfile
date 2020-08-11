@@ -60,6 +60,9 @@ WORKDIR /var/www/html/protected/application/themes/
 
 RUN find . -maxdepth 1 -mindepth 1 -exec echo "compilando sass do tema " {} \; -exec sass {}/assets/css/sass/main.scss {}/assets/css/main.css -E "UTF-8" \;
 
+RUN mkdir -p /var/www/html/protected/application/plugins/AldirBlanc
+RUN mkdir -p /var/www/html/protected/application/plugins/MultipleLocalAuth
+
 RUN git clone https://github.com/mapasculturais/plugin-AldirBlanc /var/www/html/protected/application/plugins/AldirBlanc
 RUN git clone https://github.com/mapasculturais/plugin-MultipleLocalAuth /var/www/html/protected/application/plugins/MultipleLocalAuth
 RUN curl https://raw.githubusercontent.com/opauth/facebook/master/FacebookStrategy.php > /var/www/html/protected/application/plugins/MultipleLocalAuth/Facebook/FacebookStrategy.php
@@ -77,9 +80,6 @@ COPY compose/config.d /var/www/html/protected/application/conf/config.d
 RUN ln -s /var/www/html /var/www/src
 
 COPY version.txt /var/www/version.txt
-
-RUN mkdir -p /var/www/html/protected/application/plugins/AldirBlanc
-RUN mkdir -p /var/www/html/protected/application/plugins/AldirBlanc
 
 COPY compose/recreate-pending-pcache-cron.sh /recreate-pending-pcache-cron.sh
 COPY compose/entrypoint.sh /entrypoint.sh
