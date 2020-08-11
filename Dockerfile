@@ -63,6 +63,7 @@ RUN find . -maxdepth 1 -mindepth 1 -exec echo "compilando sass do tema " {} \; -
 RUN mkdir /var/www/html/assets
 RUN mkdir /var/www/html/files
 RUN mkdir /var/www/private-files
+RUN chown -R www-data:www-data /var/www/html/assets /var/www/html/files /var/www/private-files
 
 COPY scripts /var/www/scripts
 COPY compose/production/php.ini /usr/local/etc/php/php.ini
@@ -72,6 +73,9 @@ COPY compose/config.d /var/www/html/protected/application/conf/config.d
 RUN ln -s /var/www/html /var/www/src
 
 COPY version.txt /var/www/version.txt
+
+RUN mkdir -p /var/www/html/protected/application/plugins/AldirBlanc
+RUN mkdir -p /var/www/html/protected/application/plugins/AldirBlanc
 
 COPY compose/recreate-pending-pcache-cron.sh /recreate-pending-pcache-cron.sh
 COPY compose/entrypoint.sh /entrypoint.sh
