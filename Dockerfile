@@ -83,7 +83,7 @@ COPY version.txt /var/www/version.txt
 COPY compose/recreate-pending-pcache-cron.sh /recreate-pending-pcache-cron.sh
 COPY compose/entrypoint.sh /entrypoint.sh
 
-RUN chown -R 1000860000. /var/www/*
+RUN chown -R www-data. /var/www/* && chmod -R ugo+w /var/www/*
 
 ENTRYPOINT ["/entrypoint.sh"]
 
