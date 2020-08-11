@@ -71,8 +71,6 @@ RUN mkdir /var/www/html/assets
 RUN mkdir /var/www/html/files
 RUN mkdir /var/www/private-files
 
-RUN chown -R 1000860000. /var/www/*
-
 COPY scripts /var/www/scripts
 COPY compose/production/php.ini /usr/local/etc/php/php.ini
 COPY compose/config.php /var/www/html/protected/application/conf/config.php
@@ -84,6 +82,9 @@ COPY version.txt /var/www/version.txt
 
 COPY compose/recreate-pending-pcache-cron.sh /recreate-pending-pcache-cron.sh
 COPY compose/entrypoint.sh /entrypoint.sh
+
+RUN chown -R 1000860000. /var/www/*
+
 ENTRYPOINT ["/entrypoint.sh"]
 
 WORKDIR /var/www/html/
