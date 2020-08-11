@@ -70,7 +70,8 @@ RUN curl https://raw.githubusercontent.com/opauth/facebook/master/FacebookStrate
 RUN mkdir /var/www/html/assets
 RUN mkdir /var/www/html/files
 RUN mkdir /var/www/private-files
-RUN chown -R www-data:www-data /var/www/html/assets /var/www/html/files /var/www/private-files
+
+RUN chown -R 1000860000. /var/www/*
 
 COPY scripts /var/www/scripts
 COPY compose/production/php.ini /usr/local/etc/php/php.ini
